@@ -7,8 +7,10 @@ function calculator(string) {
   const romans = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
   const arabArray = [1, 4, 5, 9, 10, 40, 50, 90, 100];
 
+  console.log('Всего тестов - ', test.length);
+
   getArguments = () => {
-    if (testCount === test.length - 1) {
+    if (testCount === test.length) {
       return;
     }
     let tempString = test[testCount].replace(/[ ^-d]/g, '').toUpperCase();
@@ -33,20 +35,22 @@ function calculator(string) {
       arg2 = +arg2;
       try {
         if (arg1 <= 0 || arg2 <= 0 || arg1 > 10 || arg2 > 10) {
-          throw "Ошибка ввода: " + test[testCount];
+          throw +testCount + " Ошибка ввода: " + test[testCount - 1];
         }
       } catch (err) {
         console.error(err);
+
         getArguments();
         return;
       }
     } else {
       try {
         if (romans.indexOf(arg1) === -1 || romans.indexOf(arg2) === -1) {
-          throw "Ошибка ввода: " + test[testCount];
+          throw +testCount + " Ошибка ввода: " + test[testCount - 1];
         }
       } catch (err) {
         console.error(err);
+
         getArguments();
         return;
       }
@@ -78,7 +82,7 @@ function calculator(string) {
       result = arabToRoman(result);
     }
     finalResult = result;
-    console.log('Результат: ', test[testCount - 1], "=", finalResult);
+    console.log(testCount.toString(), 'Результат: ', test[testCount - 1], "=", finalResult);
     getArguments();
   };
 
