@@ -1,12 +1,17 @@
 function calculator(string) {
+  const test = ['1 + 1', '1 + 2', '4 + 3', '10 + 10', '10 - 1', '5 - 4', '4 - 4', '1 - 10', '4 - 5', '10 * 10', '4 * 10', '5 * 1', '5 * 5', '10 / 1', '6 / 2', '5 / 4', '2 / 4', 'I + I', 'I + II', 'IV + III', 'X + X', 'X + IX', 'X - I', 'V - IV', 'IV - IV', 'I - X', 'IV - V', 'X * X', 'IV * X', 'V * I', 'V * V', 'X / I', 'VI / II', 'V / IV', 'II / IV', '', ' ', '     ', '4', '+', '++1', 'V', '3 % 4', '1 + 1 + 1', '11 + 1', '1 + 11', 'XI + I', 'I + XI', '1 + V', 'I + 1', '5 / 0', '0 + 1', '1 + 0'];
+  let testCount = 0;
   let finalResult = 0;
   const operatorArr = ['+', '-', '*', '/'];
   const romanArray = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C'];
   const romans = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
   const arabArray = [1, 4, 5, 9, 10, 40, 50, 90, 100];
-  const tempString = string.replace(/[ ^-d]/g, '').toUpperCase();
 
   getArguments = () => {
+    if (testCount === test.length - 1) {
+      return;
+    }
+    let tempString = test[testCount].replace(/[ ^-d]/g, '').toUpperCase();
     let arg1 = 0;
     let arg2 = 0;
     let operator = "";
@@ -17,6 +22,7 @@ function calculator(string) {
         arg2 = tempString.slice(tempString.indexOf(operatorArr[i]) + 1);
       }
     }
+    testCount++;
     checkInput(arg1, arg2, operator);
   };
 
@@ -27,19 +33,21 @@ function calculator(string) {
       arg2 = +arg2;
       try {
         if (arg1 <= 0 || arg2 <= 0 || arg1 > 10 || arg2 > 10) {
-          throw "Вы ввели некорректные данные";
+          throw "Ошибка ввода: " + test[testCount];
         }
       } catch (err) {
         console.error(err);
+        getArguments();
         return;
       }
     } else {
       try {
         if (romans.indexOf(arg1) === -1 || romans.indexOf(arg2) === -1) {
-          throw "Вы ввели некорректные данные";
+          throw "Ошибка ввода: " + test[testCount];
         }
       } catch (err) {
         console.error(err);
+        getArguments();
         return;
       }
       arg1 = romanToArab(arg1);
@@ -70,7 +78,8 @@ function calculator(string) {
       result = arabToRoman(result);
     }
     finalResult = result;
-    return finalResult;
+    console.log('Результат: ', test[testCount - 1], "=", finalResult);
+    getArguments();
   };
 
   arabToRoman = (arab) => {
@@ -104,9 +113,7 @@ function calculator(string) {
     }
     return result;
   };
-
   getArguments();
-  return finalResult;
 }
 
 calculate = function (string) {
@@ -114,4 +121,4 @@ calculate = function (string) {
   return result;
 };
 
-console.log(calculate('I-X'));
+calculate();
