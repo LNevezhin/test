@@ -14,7 +14,7 @@ function calculator(string) {
     if (testCount === test.length) {
       return;
     }
-    let tempString = test[testCount].replace(/[ ^-d]/g, '').toUpperCase();
+    let tempString = test[testCount].replace(/\s+/g, '').toUpperCase();
     let arg1 = 0;
     let arg2 = 0;
     let operator = "";
