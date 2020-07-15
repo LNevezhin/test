@@ -1,4 +1,5 @@
 function calculator(string) {
+
   let finalResult = 0;
   const operatorArr = ['+', '-', '*', '/'];
   const romanArray = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C'];
