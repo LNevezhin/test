@@ -5,7 +5,7 @@ function calculator(string) {
   const romanArray = ['I', 'IV', 'V', 'IX', 'X', 'XL', 'L', 'XC', 'C'];
   const romans = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
   const arabArray = [1, 4, 5, 9, 10, 40, 50, 90, 100];
-  const tempString = string.replace(/[ ^-d]/g, '').toUpperCase();
+  const tempString = string.replace(/\s+/g, '').toUpperCase();
 
   getArguments = () => {
     let arg1 = 0;
