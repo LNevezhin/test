@@ -25,21 +25,13 @@ function calculator(string) {
     if (typeof (+arg1) === "number" && typeof (+arg2) === "number" && (+arg1) > 0 && (+arg1) <= 10 && (+arg2) > 0 && (+arg2) <= 10) {
       arg1 = +arg1;
       arg2 = +arg2;
-      try {
-        if (arg1 <= 0 || arg2 <= 0 || arg1 > 10 || arg2 > 10) {
-          throw string;
-        }
-      } catch (err) {
-        console.error(err);
-        return;
-      }
     } else {
       try {
         if (romans.indexOf(arg1) === -1 || romans.indexOf(arg2) === -1) {
-          throw string;
+          throw err;
         }
       } catch (err) {
-        console.error(err);
+        console.log("Ошибка ввода:", string);
         return;
       }
       arg1 = romanToArab(arg1);
@@ -114,4 +106,4 @@ calculate = function (string) {
   return result;
 };
 
-console.log(calculate('11+10'));
+console.log(calculate('XII+II'));

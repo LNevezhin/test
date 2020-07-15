@@ -33,16 +33,6 @@ function calculator(string) {
     if (typeof (+arg1) === "number" && typeof (+arg2) === "number" && (+arg1) > 0 && (+arg1) <= 10 && (+arg2) > 0 && (+arg2) <= 10) {
       arg1 = +arg1;
       arg2 = +arg2;
-      try {
-        if (arg1 <= 0 || arg2 <= 0 || arg1 > 10 || arg2 > 10) {
-          throw +testCount + " Ошибка ввода: " + test[testCount - 1];
-        }
-      } catch (err) {
-        console.error(err);
-
-        getArguments();
-        return;
-      }
     } else {
       try {
         if (romans.indexOf(arg1) === -1 || romans.indexOf(arg2) === -1) {
@@ -50,7 +40,6 @@ function calculator(string) {
         }
       } catch (err) {
         console.error(err);
-
         getArguments();
         return;
       }
