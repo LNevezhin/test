@@ -107,4 +107,4 @@ calculate = function (string) {
   return result;
 };
 
-console.log(calculate('XII+II'));
+calculate('XII+II');
